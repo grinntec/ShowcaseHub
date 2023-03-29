@@ -1,0 +1,4 @@
+﻿rule_ref,priority,direction,source_address_prefix,source_address_prefixes,source_application_security_group_ids,source_port_range,source_port_ranges,destination_address_prefix,destination_address_prefixes,destination_application_security_group_ids,destination_port_range,destination_port_ranges,protocol,access,description
+1,100,Inbound,187.203.200.206/32,,,*,,VirtualNetwork,,,22,,Tcp,Allow,Allow TCP/22 inbound to the VNet from a specific Internet IP address
+2,200,Inbound,,"187.203.200.206/32,80.208.70.23/32",,*,,10.0.1.10/32,,,,"3389,22",Tcp,Allow,Allow TCP/3389 & TCP/22 inbound to a specified IP from two specific Internet IP address
+,100,Outbound,VirtualNetwork,,,*,,192.168.1.23-192.168.1.55,,,,"443,8080,589",*,Allow,Allow the Vnet outbound to a specified IP
