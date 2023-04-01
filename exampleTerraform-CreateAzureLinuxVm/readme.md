@@ -1,0 +1,7 @@
+This Terraform code is designed to create an Azure Linux virtual machine in an existing virtual network with a dynamic public IP address. It begins by specifying the required Terraform version and AzureRM provider version. Next, it configures the AzureRM provider and defines local variables for resource naming, location, and existing network resources.
+
+The code continues by retrieving information about the existing virtual network, subnet, and public IP address using data sources. It then creates a new resource group for the virtual machine and associated resources. To ensure unique resource naming and a secure admin password, it generates random strings.
+
+A dynamic public IP address is created for the virtual machine, followed by a network interface card that connects it to the specified subnet and public IP address. The Linux virtual machine is then created using the Ubuntu 18.04-LTS image, connecting it to the created network interface. The code sets the admin username, password, and enables password authentication for the virtual machine.
+
+Lastly, it exposes the generated random name, admin password, resource group name, and public IP address of the virtual machine as outputs.
