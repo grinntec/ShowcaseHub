@@ -30,8 +30,7 @@ resource "azurerm_linux_virtual_machine" "this" {
   admin_ssh_key {
     username   = "adminuser"
     public_key = data.azurerm_key_vault_secret.public_key_adminuser.value
-
-  }
+}
 
   os_disk {
     name                 = "osdisk-${local.prefix}-${lower(random_id.name.hex)}"
