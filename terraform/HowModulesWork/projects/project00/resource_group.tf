@@ -1,5 +1,5 @@
 module "resource_group" {
-  source  = "../../modules/azure_resource_group/"
+  source = "../../modules/azure_resource_group/"
   # insert required variables here
   prefix                  = local.prefix
   resource_group_location = local.location

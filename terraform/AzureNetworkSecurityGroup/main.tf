@@ -35,7 +35,7 @@ resource "azurerm_network_security_group" "this" {
 
 resource "azurerm_network_security_rule" "this" {
   for_each = { for nsg_rule in local.nsg_rules : nsg_rule.rule_ref => nsg_rule }
-  
+
 
   resource_group_name         = azurerm_network_security_group.this.resource_group_name
   network_security_group_name = azurerm_network_security_group.this.name
@@ -60,7 +60,7 @@ resource "azurerm_network_security_rule" "this" {
   destination_application_security_group_ids = length(each.value.destination_application_security_group_ids) > 0 ? split(",", each.value.destination_application_security_group_ids) : null
 
   # Destination port range(s)
-  destination_port_range = each.value.destination_port_range != "" ? each.value.destination_port_range : null
+  destination_port_range  = each.value.destination_port_range != "" ? each.value.destination_port_range : null
   destination_port_ranges = length(each.value.destination_port_ranges) > 0 ? split(",", each.value.destination_port_ranges) : null
 
   # Protocol

@@ -1,5 +1,5 @@
 module "storage_account" {
-  source  = "../../modules/azure_storage_account/"
+  source = "../../modules/azure_storage_account/"
   # insert required variables here
   prefix                  = local.prefix
   resource_group_name     = module.resource_group.resource_group_name
