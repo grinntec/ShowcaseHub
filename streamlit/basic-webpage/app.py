@@ -1,6 +1,6 @@
-import requests
-import streamlit as st
-from streamlit_lottie import st_lottie
+import requests  # Used for making HTTP requests to load Lottie JSON data.
+import streamlit as st  # Streamlit library for creating web apps with Python.
+from streamlit_lottie import st_lottie  # Streamlit component for rendering Lottie animations.
 
 # ---- CONSTANTS ----
 LOTTIE_URL = "https://lottie.host/2011bba0-0444-4c05-92e2-9e1ec63fef08/2CGPse9h3m.json"
@@ -12,7 +12,13 @@ st.set_page_config(page_title="Basic Webpage", layout="wide")
 
 # ---- FUNCTION TO LOAD LOTTIE JSON DATA ----
 def load_lottieurl(url):
-    """Loads lottie JSON data from a given URL."""
+    """
+    Loads Lottie JSON data from a given URL.
+    
+    :param url: str, The URL of the Lottie animation.
+    :return: dict, The loaded Lottie JSON data or None if loading fails.
+    :raises: requests.RequestException if the request to the URL fails.
+    """
     try:
         r = requests.get(url)
         r.raise_for_status()  # Raises an HTTPError if the HTTP request returned an unsuccessful status code
