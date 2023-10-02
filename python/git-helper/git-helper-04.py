@@ -103,20 +103,23 @@ def compare_with_origin(repo, branch_name):
 #################################################################################################################################################
 def main():
     repo, branch_name, latest_tag = initialize_repository()
-    print(f"\n{OUTPUT_TEXT}You are working in the {ANSWER_TEXT}{repo.working_tree_dir}{OUTPUT_TEXT} repository on the {ANSWER_TEXT}{branch_name}{OUTPUT_TEXT} branch. The latest tag (version) is {ANSWER_TEXT}{latest_tag}{RESET_TEXT}\n")
+    print(f"\n{BOLD_TEXT}--- Repository Information ---{RESET_TEXT}")
+    print(f"{OUTPUT_TEXT}You are working in the {ANSWER_TEXT}{repo.working_tree_dir}{OUTPUT_TEXT} repository on the {ANSWER_TEXT}{branch_name}{OUTPUT_TEXT} branch. The latest tag (version) is {ANSWER_TEXT}{latest_tag}{RESET_TEXT}\n")
     
     while True:
+        print(f"{BOLD_TEXT}--- Status ---{RESET_TEXT}")
         comparison_result = compare_with_origin(repo, branch_name)
         print(comparison_result)
         
-        print(f"\n{QUESTION_TEXT}What do you want to do?{RESET_TEXT}")
+        print(f"\n{BOLD_TEXT}--- Options ---{RESET_TEXT}")
         print(f"{OUTPUT_TEXT}1. Push unpushed commits{RESET_TEXT}")
         print(f"{OUTPUT_TEXT}2. Commit uncommitted changes{RESET_TEXT}")
         print(f"{OUTPUT_TEXT}3. Add untracked files{RESET_TEXT}")
         print(f"{OUTPUT_TEXT}4. Exit{RESET_TEXT}")
         
-        user_choice = input(f"{QUESTION_TEXT}Enter the number of your choice: {RESET_TEXT}")
+        user_choice = input(f"\n{QUESTION_TEXT}Enter the number of your choice: {RESET_TEXT}")
         
+        print(f"{BOLD_TEXT}--- Execution Result ---{RESET_TEXT}")
         if user_choice == '1':
             try:
                 repo.git.push('origin', branch_name)
@@ -141,11 +144,11 @@ def main():
             break
         else:
             print(f"{ERROR_TEXT}Invalid choice. Please enter a number between 1 and 4.{RESET_TEXT}")
+        
+        print(f"{BOLD_TEXT}-----------------------------{RESET_TEXT}\n")
 
 if __name__ == "__main__":
     main()
-
-
 
 
 #################################################################################################################################################
