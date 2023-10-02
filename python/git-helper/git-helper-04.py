@@ -126,6 +126,7 @@ def main():
         elif user_choice == '2':
             commit_message = input(f"{QUESTION_TEXT}Enter a commit message: {RESET_TEXT}")
             try:
+                repo.git.add('.')  # Stage all changes
                 repo.git.commit('-m', commit_message)
                 print(f"{ANSWER_TEXT}Uncommitted changes have been committed.{RESET_TEXT}")
             except Exception as e:
@@ -143,6 +144,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
 
 
 #################################################################################################################################################
