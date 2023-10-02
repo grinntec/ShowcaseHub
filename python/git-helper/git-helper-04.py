@@ -141,7 +141,7 @@ def main():
             except Exception as e:
                 print(f"{ERROR_TEXT}Error adding files: {e}{RESET_TEXT}")
         elif user_choice == '4':
-            break
+            sys.exit(0)  # Exit the script immediately
         else:
             print(f"{ERROR_TEXT}Invalid choice. Please enter a number between 1 and 4.{RESET_TEXT}")
         
