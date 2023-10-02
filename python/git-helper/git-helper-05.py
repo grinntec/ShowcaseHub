@@ -2,6 +2,7 @@ import os
 import sys
 import git
 import logging
+import semver
 from semver import VersionInfo
 import datetime
 
@@ -159,6 +160,9 @@ def main():
                 print(f"{ERROR_TEXT}Invalid choice. Please enter a number between 1 and 3.{RESET_TEXT}")
                 continue  # Skip to the next iteration of the loop
             
+            # Get the diff between the working directory and the last commit
+            diff = repo.git.diff()
+            
             # Create a new tag with the new version number
             repo.create_tag(str(new_version))
             
@@ -166,7 +170,7 @@ def main():
             with open('CHANGELOG.md', 'a') as f:
                 f.write(f"\n## {new_version} - {datetime.datetime.now().strftime('%Y-%m-%d')}\n")
                 changes = input(f"{QUESTION_TEXT}Enter the changes included in this version (separate multiple changes with commas): {RESET_TEXT}")
-                f.write(', '.join(changes.split(',')))
+                f.write(', '.join(changes.split(',')) + f"\n\n### Diff:\n```\n{diff}\n```\n")
             
             print(f"{ANSWER_TEXT}A new version {new_version} has been tagged and the changelog has been updated.{RESET_TEXT}")
         elif user_choice == '5':
@@ -178,7 +182,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-#################################################################################################################################################
-#################################################################################################################################################
-#################################################################################################################################################
