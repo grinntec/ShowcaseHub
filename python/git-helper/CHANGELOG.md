@@ -127,3 +127,11 @@ index 5a59760..730a2df 100644
              print(f"{ANSWER_TEXT}A new version {new_version} has been tagged and the changelog has been updated.{RESET_TEXT}")
          elif user_choice == '5':
 ```
+
+## 1.0.0 - 2023-10-02
+test
+
+### Diff:
+```
+
+```
