@@ -1,0 +1,32 @@
+{
+    "mode": "Indexed",
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "anyOf": [
+              {
+                "field": "type",
+                "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+              },
+              {
+                "field": "tags['CreatedOnDate']",
+                "exists": "false"
+              }
+            ]
+          }
+        ]
+      },
+      "then": {
+        "effect": "append",
+        "details": [
+          {
+            "field": "tags['CreatedOnDate']",
+            "value": "[utcNow()]"
+          }
+        ]
+      }
+    },
+    "parameters": {}
+  }
+  
