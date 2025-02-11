@@ -1,37 +1,3 @@
-<#
-.SYNOPSIS
-    Sends an email using the SendGrid API via Azure Automation.
-
-.DESCRIPTION
-    This script sends an email by interfacing with the SendGrid API. It retrieves
-    the SendGrid API key from Azure Key Vault and leverages Azure Automation's 
-    system-assigned managed identity for secure authentication. The documentation 
-    below outlines the required parameters and provides an example of usage.
-
-.PARAMETER destEmailAddress
-    Specifies the recipient email address.
-
-.PARAMETER fromEmailAddress
-    Specifies the sender email address.
-
-.PARAMETER subject
-    Specifies the subject line of the email.
-
-.PARAMETER content
-    Contains the body content of the email.
-
-.EXAMPLE
-    Send-EmailViaSendGrid -destEmailAddress "recipient@example.com" `
-                         -fromEmailAddress "sender@example.com" `
-                         -subject "Test Email" `
-                         -content "This is a sample email message."
-
-.REMARKS
-    - Ensure the Azure Key Vault is configured with the SendGrid API key.
-    - The script depends on a system-assigned managed identity for authentication.
-    - For improved robustness, consider adding parameter validation and error handling.
-#>
-
 Param(
     [Parameter(Mandatory = $true)]
     [string] $destEmailAddress,
