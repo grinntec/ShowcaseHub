@@ -1,0 +1,1 @@
+https://grinntec.net/labs/lab-azure-automation-account/
