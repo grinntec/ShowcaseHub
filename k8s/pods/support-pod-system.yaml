@@ -1,0 +1,50 @@
+#
+# This YAML file defines a Kubernetes Pod named "support-pod-system" in the "default" namespace.
+# The pod runs an Ubuntu container with several useful networking and system utilities installed.
+# It is designed to be scheduled onto the system node pool and can be used for troubleshooting and support tasks.
+#
+# Features:
+# - Runs an Ubuntu container with tools like netcat, telnet, dnsutils, curl, ping, and git.
+# - Uses a simple infinite loop to keep the container running.
+# - Requests and limits for CPU and memory resources are defined.
+# - The pod is scheduled onto the system node pool using a nodeSelector and tolerations.
+#
+# Usage:
+# - Apply this YAML file to your Kubernetes cluster using `kubectl apply -f support-pod-system.yaml`.
+# - Use `kubectl exec` to run commands inside the pod for troubleshooting and support tasks.
+#
+# Example:
+# kubectl apply -f support-pod-system.yaml
+# kubectl exec -it support-pod-system -- /bin/bash
+#
+apiVersion: v1
+kind: Pod
+metadata:
+  name: support-pod-system
+  namespace: default
+spec:
+  containers:
+  - name: support-pod-system
+    image: ubuntu:latest
+    command:
+      - "/bin/bash"
+      - "-c"
+      - |
+        apt-get update && \
+        apt-get install -y netcat-openbsd telnet dnsutils curl iputils-ping git && \
+        while true; do sleep 3600; done
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 200m
+        memory: 256Mi
+  nodeSelector:
+    mode: system
+# Allows the pod to be scheduled onto the system node pool  
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
