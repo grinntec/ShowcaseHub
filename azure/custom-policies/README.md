@@ -1,1 +1,0 @@
-https://www.grinntec.net/guides/guide-azure-custom-policies/
